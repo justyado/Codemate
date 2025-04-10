@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codemate.Api", "Codemate.Api\Codemate.Api.csproj", "{9ED37738-5E7D-4305-9CDD-86992165B4BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codemate.Api", "src/Codemate.Api\Codemate.Api.csproj", "{9ED37738-5E7D-4305-9CDD-86992165B4BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codemate.Application", "Codemate.Application\Codemate.Application.csproj", "{8DF12AF2-53F8-4E98-9F03-532B6BC0FDBF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codemate.Application", "src/Codemate.Application\Codemate.Application.csproj", "{8DF12AF2-53F8-4E98-9F03-532B6BC0FDBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codemate.Infrastructure", "Codemate.Infrastructure\Codemate.Infrastructure.csproj", "{AEFB9825-FE5F-4B04-82BC-CF9DC6E4B687}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codemate.Infrastructure", "src/Codemate.Infrastructure\Codemate.Infrastructure.csproj", "{AEFB9825-FE5F-4B04-82BC-CF9DC6E4B687}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codemate.Domain", "Codemate.Domain\Codemate.Domain.csproj", "{706A204E-EB52-4823-A3AE-FA8088451964}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codemate.Domain", "src/Codemate.Domain\Codemate.Domain.csproj", "{706A204E-EB52-4823-A3AE-FA8088451964}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
