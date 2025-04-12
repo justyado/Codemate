@@ -40,10 +40,10 @@ public class User
     /// <summary>
     /// Projects created by the user
     /// </summary>
-    ICollection<Project> CreatedProjects { get; set; }
+    public ICollection<Project> CreatedProjects { get; set; }
     
     /// <summary>
     /// Projects the user is a member of
     /// </summary>
-    ICollection<Project> JoinedProjects { get; set; }
+    public ICollection<Project> JoinedProjects { get; set; }
 }

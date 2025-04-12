@@ -28,11 +28,6 @@ public class Project
     public string Description { get; set; }
     
     /// <summary>
-    /// Required skills
-    /// </summary>
-    public string RequiredSkills { get; set; }
-    
-    /// <summary>
     /// Required skills for the project
     /// </summary>
     public ICollection<Skill> Skills { get; set; }
