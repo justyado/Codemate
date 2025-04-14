@@ -20,7 +20,7 @@ public class User
     /// <summary>
     /// Short bio or profile description
     /// </summary>
-    public string Bio { get; set; }
+    public string? Bio { get; set; }
     
     /// <summary>
     /// User's email address

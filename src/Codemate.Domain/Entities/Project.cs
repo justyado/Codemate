@@ -25,12 +25,12 @@ public class Project
     /// <summary>
     /// Project description
     /// </summary>
-    public string Description { get; set; }
+    public string? Description { get; set; }
     
     /// <summary>
     /// Required skills for the project
     /// </summary>
-    public ICollection<Skill> Skills { get; set; }
+    public ICollection<Skill> RequiredSkills { get; set; }
     
     /// <summary>
     /// List of project members

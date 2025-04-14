@@ -33,7 +33,7 @@ public class ProjectConfiguration : IEntityTypeConfiguration<Project>
                     .OnDelete(DeleteBehavior.Cascade));
         
         builder 
-            .HasMany(p => p.Skills)
+            .HasMany(p => p.RequiredSkills)
             .WithMany()
             .UsingEntity<Dictionary<string, object>>(
                 "ProjectSkills",

@@ -1,42 +1,74 @@
 ﻿using Codemate.Domain.Entities;
 using Codemate.Domain.Interfaces;
+using Codemate.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Codemate.Infrastructure.Repository;
 
 public class ProjectRepository : IProjectRepository
 {
-    public Task<ICollection<Project>> GetAll()
+    private readonly ApplicationDbContext _context;
+    public ProjectRepository(ApplicationDbContext context)
     {
-        throw new NotImplementedException();
+        _context = context;
+    }
+    
+    public async Task<ICollection<Project>> GetAll()
+    {
+        return await _context.Projects
+            .AsNoTracking()
+            .ToListAsync();
     }
 
-    public Task<Project> GetById(Guid id)
+    public async Task<Project?> GetById(Guid id)
     {
-        throw new NotImplementedException();
+        return await _context.Projects
+            .AsNoTracking()
+            .FirstOrDefaultAsync(p => p.Id == id);
     }
 
-    public Task<Project> GetByName(string name)
+    public async Task<Project?> GetByName(string name)
     {
-        throw new NotImplementedException();
+        return await _context.Projects
+            .AsNoTracking()
+            .FirstOrDefaultAsync(p => p.Name == name);
     }
 
-    public Task<Project> Add(Project project)
+    public async Task<Project> Add(Project project)
     {
-        throw new NotImplementedException();
+        await _context.Projects.AddAsync(project);
+        
+        await _context.SaveChangesAsync();
+        
+        return project;
     }
 
-    public Task<Project> Update(Project project)
+    public async Task<Project> Update(Project project)
     {
-        throw new NotImplementedException();
+        await _context.Projects
+            .Where(p => p.Id == project.Id)
+            .ExecuteUpdateAsync(s => s
+                .SetProperty(p => p.Name, project.Name)
+                .SetProperty(p => p.Description, project.Description)
+            );
+        
+        return project;
     }
 
-    public Task AddSkill(Guid projectId, Guid skillId)
+    public async Task AddSkill(Guid projectId, Guid skillId)
     {
-        throw new NotImplementedException();
+        var project = await _context.Projects.FirstOrDefaultAsync(p => p.Id == projectId);
+        var skill = await _context.Skills.FirstOrDefaultAsync(s => s.Id == skillId);
+        
+        project?.RequiredSkills.Add(skill);
+        
+        await _context.SaveChangesAsync();
     }
 
-    public Task Delete(Guid id)
+    public async Task Delete(Guid id)
     {
-        throw new NotImplementedException();
+        await _context.Projects
+            .Where(p => p.Id == id)
+            .ExecuteDeleteAsync();
     }
 }

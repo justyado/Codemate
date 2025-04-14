@@ -1,32 +1,56 @@
 ﻿using Codemate.Domain.Entities;
 using Codemate.Domain.Interfaces;
+using Codemate.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Codemate.Infrastructure.Repository;
 
 public class SkillRepository : ISkillRepository
 {
-    public Task<ICollection<Skill>> GetAll()
+    private readonly ApplicationDbContext _context;
+    public SkillRepository(ApplicationDbContext context)
     {
-        throw new NotImplementedException();
+        _context = context;
+    }
+    
+    public async Task<ICollection<Skill>> GetAll()
+    {
+        return await _context.Skills
+            .AsNoTracking()
+            .ToListAsync();
     }
 
-    public Task<Skill> GetById(Guid id)
+    public async Task<Skill?> GetById(Guid id)
     {
-        throw new NotImplementedException();
+        return await _context.Skills
+            .AsNoTracking()
+            .FirstOrDefaultAsync(s => s.Id == id);
     }
 
-    public Task<Skill> Add(Skill skill)
+    public async Task<Skill> Add(Skill skill)
     {
-        throw new NotImplementedException();
+        await _context.Skills.AddAsync(skill);
+        
+        await _context.SaveChangesAsync();
+        
+        return skill;
     }
 
-    public Task<Skill> Update(Skill skill)
+    public async Task<Skill> Update(Skill skill)
     {
-        throw new NotImplementedException();
+        await _context.Users
+            .Where(s => s.Id == skill.Id)
+            .ExecuteUpdateAsync(x => x
+                .SetProperty(s => s.Name, skill.Name)
+            );
+        
+        return skill;
     }
 
-    public Task Delete(Guid id)
+    public async Task Delete(Guid id)
     {
-        throw new NotImplementedException();
+        await _context.Skills
+            .Where(s => s.Id == id)
+            .ExecuteDeleteAsync();
     }
 }
